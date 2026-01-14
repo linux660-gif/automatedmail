@@ -6,8 +6,9 @@ class EmailAPI:
     def __init__(self):
         path = None
     def  send_email_with_attachment(self, file_path:str):
-        sender_email = os.getenv("EMAIL_USER")
-        receiver = os.getenv("EMAIL_PASS")
+        sender_email = os.getenv("EMAIL_SENDER")
+        receiver = os.getenv("EMAIL_RECEIVER")
+        password = os.getenv("EMAIL_PASS")
 
         message_object = EmailMessage()
         message_object['Subject'] = 'Update on Registration'
@@ -31,7 +32,7 @@ class EmailAPI:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
 
-        server.login(sender_email, 'nymq netk fodr psta ')
+        server.login(sender_email, password)
         server.send_message(message_object)
 
 
